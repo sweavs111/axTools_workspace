@@ -2,7 +2,7 @@
 
 # add minScore to func main()
 
-var filterAxtScore *int = flag.int("minScore", "false", "filter axt alignments by minimum score")
+var filterAxtScore *int = flag.int("minScore", 0, "filter axt alignments by minimum score")
 
 
 # insert into line 46 in axTools.go
@@ -14,13 +14,13 @@ var filterAxtScore *int = flag.int("minScore", "false", "filter axt alignments b
 # lines 54-65 in axTools.go, edited for -minScore 
 
 
-func filterAxt(input string, output string, minScore int) {
+func filterAxtScore(input string, output string, minScore int) {
 	ioWriter := fileio.EasyCreate(output)
 	data, _ := axt.GoReadToChan(input)
 
-	var index int = 0
+	var index int
 	for each := range data {
-		if each.score >= score {
+		if each.Score >= minScore {
 			axt.WriteToFileHandle(ioWriter, each, index)
 			index++
 		}
