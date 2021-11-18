@@ -1,9 +1,18 @@
 ## workspace to troubleshoot and write -minScore for axTools in gonomics
 
+# add minScore to func main()
+
+var filterAxtScore *int = flag.int("minScore", "false", "filter axt alignments by minimum score")
+
+
 # insert into line 46 in axTools.go
 
+} else if *minScore != 0 {
+	filterAxtScore(input, output, *minScore)
+	}
 
 # lines 54-65 in axTools.go, edited for -minScore 
+
 
 func filterAxt(input string, output string, minScore int) {
 	ioWriter := fileio.EasyCreate(output)
