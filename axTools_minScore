@@ -1,0 +1,19 @@
+## workspace to troubleshoot and write -minScore for axTools in gonomics
+
+# insert into line 46 in axTools.go
+
+
+# lines 54-65 in axTools.go, edited for -minScore 
+
+func filterAxt(input string, output string, minScore int) {
+	ioWriter := fileio.EasyCreate(output)
+	data, _ := axt.GoReadToChan(input)
+
+	var index int = 0
+	for each := range data {
+		if each.score >= score {
+			axt.WriteToFileHandle(ioWriter, each, index)
+			index++
+		}
+	}
+}
